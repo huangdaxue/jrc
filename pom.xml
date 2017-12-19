@@ -6,9 +6,16 @@
 
     <groupId>com.xiaojiezhu.jrc</groupId>
     <artifactId>jrc</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <description>jrc , j remote config。远程配置</description>
+    <modules>
+        <module>jrc-common</module>
+        <module>jrc-server</module>
+        <module>jrc-web-server</module>
+        <module>jrc-client</module>
+    </modules>
 
 
     <properties>
