@@ -23,6 +23,12 @@
             <artifactId>fastjson</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.xiaojiezhu.jrc</groupId>
+            <artifactId>jrc-common</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

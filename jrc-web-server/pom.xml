@@ -9,9 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jrc-web-server</artifactId>
-
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -24,11 +21,16 @@
             </exclusions>
         </dependency>
 
-
+        <!-- jrc...start -->
         <dependency>
             <groupId>com.xiaojiezhu.jrc</groupId>
             <artifactId>jrc-server-support</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.xiaojiezhu.jrc</groupId>
+            <artifactId>jrc-common</artifactId>
+        </dependency>
+        <!-- jrc...end -->
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -66,6 +68,9 @@
 
 
     </dependencies>
+
+
+    <artifactId>jrc-web-server</artifactId>
 
 
 

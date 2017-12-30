@@ -85,6 +85,12 @@
                 <version>${version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.xiaojiezhu.jrc</groupId>
+                <artifactId>jrc-client</artifactId>
+                <version>${version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

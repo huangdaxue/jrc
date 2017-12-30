@@ -1,14 +1,15 @@
 package com.xiaojiezhu.jrc.web.server;
 
-import com.xiaojiezhu.jrc.web.server.support.WebJsonConfig;
+import com.xiaojiezhu.jrc.web.server.support.WebMvcConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 /**
  * start web server
+ * @author xiaojie.zhu
  */
-@Import({WebJsonConfig.class})
+@Import({WebMvcConfig.class})
 @SpringBootApplication
 public class WebServerApplication {
 
