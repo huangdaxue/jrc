@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jrc-server-support</artifactId>
+    <artifactId>jrc-server-dao</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,20 +18,34 @@
             <scope>provided</scope>
         </dependency>
 
+
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis.spring.boot</groupId>
+                    <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <scope>provided</scope>
+            <artifactId>druid</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.xiaojiezhu.jrc</groupId>
-            <artifactId>jrc-common</artifactId>
-            <scope>provided</scope>
+            <artifactId>jrc-model</artifactId>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
+
 
 </project>
