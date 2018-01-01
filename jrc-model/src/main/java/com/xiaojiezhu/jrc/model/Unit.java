@@ -1,5 +1,7 @@
 package com.xiaojiezhu.jrc.model;
 
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,10 +12,13 @@ public class Unit implements Serializable {
 
     private int id;
 
+    @NotNull(message = "group cant not be null")
     private String group;
 
+    @NotNull(message = "unit cant not be null")
     private String unit;
 
+    @NotNull(message = "description cant not be null")
     private String description;
 
     private Date createTime;

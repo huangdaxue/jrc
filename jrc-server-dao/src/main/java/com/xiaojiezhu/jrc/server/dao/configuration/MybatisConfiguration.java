@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 
 import javax.sql.DataSource;
 
@@ -50,6 +53,11 @@ public class MybatisConfiguration {
         //日志实现
         configuration.setLogImpl(Slf4jImpl.class);
         factory.setConfiguration(configuration);
+
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Resource[] resourceArray = resolver.getResources("classpath*:mapper/*.xml");
+        factory.setMapperLocations(resourceArray);
+
         return factory.getObject();
     }
 }
