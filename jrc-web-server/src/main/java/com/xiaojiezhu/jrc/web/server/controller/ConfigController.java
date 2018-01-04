@@ -5,6 +5,7 @@ import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
 import com.xiaojiezhu.jrc.web.server.support.exception.ex.NoticeException;
+import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class ConfigController {
 
     @ResponseBody
     @RequestMapping("/listUnit")
-    public List<Unit> listUnit(@RequestParam("index")int index,@RequestParam("size")int size,@RequestParam("unitName")String unitName){
+    public LimitResult listUnit(@RequestParam("index")int index, @RequestParam("size")int size, @RequestParam("unitName")String unitName){
         if(size > 30){
             throw new RuntimeException("out query size");
         }

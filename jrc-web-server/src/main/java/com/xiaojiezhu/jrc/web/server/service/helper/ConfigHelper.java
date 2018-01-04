@@ -2,6 +2,8 @@ package com.xiaojiezhu.jrc.web.server.service.helper;
 
 import com.xiaojiezhu.jrc.model.Unit;
 
+import java.util.List;
+
 /**
  * @author xiaojie.zhu
  */
@@ -18,4 +20,5 @@ public interface ConfigHelper {
      * @param unit
      */
     void addUnit(Unit unit);
+
 }

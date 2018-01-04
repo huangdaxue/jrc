@@ -1,6 +1,8 @@
 package com.xiaojiezhu.jrc.model;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
@@ -21,8 +23,9 @@ public class Unit implements Serializable {
     @NotNull(message = "description cant not be null")
     private String description;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     public int getId() {

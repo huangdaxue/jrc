@@ -1,6 +1,7 @@
 package com.xiaojiezhu.jrc.web.server.service;
 
 import com.xiaojiezhu.jrc.model.Unit;
+import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 
 import java.util.List;
 
@@ -23,5 +24,5 @@ public interface ConfigService {
      * @param unitName
      * @return
      */
-    List<Unit> listUnit(int index, int size, String unitName);
+    LimitResult listUnit(int index, int size, String unitName);
 }

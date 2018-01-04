@@ -6,6 +6,8 @@ import com.xiaojiezhu.jrc.web.server.service.helper.ConfigHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author xiaojie.zhu
  */
@@ -25,4 +27,5 @@ public class DefaultConfigHelper implements ConfigHelper {
     public void addUnit(Unit unit) {
         boolean r = unitDao.insertUnit(unit);
     }
+
 }

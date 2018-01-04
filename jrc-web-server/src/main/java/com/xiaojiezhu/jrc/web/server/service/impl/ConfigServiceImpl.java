@@ -5,6 +5,7 @@ import com.xiaojiezhu.jrc.server.dao.mysql.UnitDao;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
 import com.xiaojiezhu.jrc.web.server.service.helper.ConfigHelper;
 import com.xiaojiezhu.jrc.web.server.support.exception.ex.UnitExistException;
+import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,10 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
-    public List<Unit> listUnit(int index, int size, String unitName) {
+    public LimitResult listUnit(int index, int size, String unitName) {
         int start = (index - 1) * size;
-        return null;
+        List<Unit> units = unitDao.listUnit(start, size, unitName);
+        long count = unitDao.countUnit(unitName);
+        return new LimitResult(count,units);
     }
 }
