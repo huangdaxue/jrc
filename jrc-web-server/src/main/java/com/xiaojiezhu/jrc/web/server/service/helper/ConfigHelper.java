@@ -1,6 +1,7 @@
 package com.xiaojiezhu.jrc.web.server.service.helper;
 
 import com.xiaojiezhu.jrc.model.Unit;
+import com.xiaojiezhu.jrc.model.Version;
 
 import java.util.List;
 
@@ -21,4 +22,17 @@ public interface ConfigHelper {
      */
     void addUnit(Unit unit);
 
+    /**
+     * version is exists
+     * @param version
+     * @return
+     */
+    boolean isExistVersion(Version version);
+
+
+    /**
+     * add version
+     * @param version
+     */
+    void addVersion(Version version);
 }

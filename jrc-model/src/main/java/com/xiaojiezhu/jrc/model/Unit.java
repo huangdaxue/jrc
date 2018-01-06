@@ -23,6 +23,11 @@ public class Unit implements Serializable {
     @NotNull(message = "description cant not be null")
     private String description;
 
+    /**
+     * config is enable
+     */
+    private boolean enable;
+
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
@@ -38,6 +43,14 @@ public class Unit implements Serializable {
 
     public String getGroup() {
         return group;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
     public void setGroup(String group) {

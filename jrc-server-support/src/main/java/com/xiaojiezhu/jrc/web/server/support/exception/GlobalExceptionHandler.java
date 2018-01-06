@@ -26,7 +26,8 @@ public class GlobalExceptionHandler {
         }
 
         int errorCode = ExceptionMapping.getErrorCode(throwable);
-        Result<?> result = new Result<>(errorCode,throwable.getMessage());
+        String errMsg = ExceptionMapping.getErrorMsg(throwable);
+        Result<?> result = new Result<>(errorCode,errMsg);
         return result;
     }
 

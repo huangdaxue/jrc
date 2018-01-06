@@ -1,5 +1,8 @@
 package com.xiaojiezhu.jrc.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,10 +12,23 @@ import java.util.Date;
 public class Version implements Serializable {
 
     private int id;
+    private int unitId;
 
+    private boolean enable;
+
+    @NotNull(message = "group cant not be null")
+    private String group;
+    @NotNull(message = "unit cant not be null")
+    private String unit;
+
+    @NotNull(message = "version cant not be null")
     private String version;
 
+    @NotNull(message = "profile cant not be null")
     private String profile;
+
+    @NotNull(message = "description cant not be null")
+    private String description;
 
     private String content;
 
@@ -20,13 +36,21 @@ public class Version implements Serializable {
      * request number
      */
     private int requestNumber;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     public int getId() {
         return id;
+    }
+
+    public int getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(int unitId) {
+        this.unitId = unitId;
     }
 
     public void setId(int id) {
@@ -35,6 +59,38 @@ public class Version implements Serializable {
 
     public String getVersion() {
         return version;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setVersion(String version) {
@@ -85,8 +141,13 @@ public class Version implements Serializable {
     public String toString() {
         return "Version{" +
                 "id=" + id +
+                ", unitId=" + unitId +
+                ", enable=" + enable +
+                ", group='" + group + '\'' +
+                ", unit='" + unit + '\'' +
                 ", version='" + version + '\'' +
                 ", profile='" + profile + '\'' +
+                ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", requestNumber=" + requestNumber +
                 ", createTime=" + createTime +
