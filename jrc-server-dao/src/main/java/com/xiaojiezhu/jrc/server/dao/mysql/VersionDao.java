@@ -3,6 +3,7 @@ package com.xiaojiezhu.jrc.server.dao.mysql;
 import com.xiaojiezhu.jrc.model.Version;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -32,4 +33,16 @@ public interface VersionDao {
     List<Version> listVersion(@Param("start") int start, @Param("size") int size, @Param("unitId")int unitId, @Param("version") String version,@Param("profile")String profile);
 
     long countVersion(@Param("unitId")int unitId,@Param("version") String version,@Param("profile")String profile);
+
+    @Select("select * from version where id=${id}")
+    Version findVersionById(@Param("id") int versionId);
+
+    /**
+     * update version table config data
+     * @param versionId
+     * @param configContent
+     * @return
+     */
+    @Update("update version set content=#{configContent},config_type=${configType},update_time=now() where id=${id}")
+    int updateVersionConfigContent(@Param("id") int versionId, @Param("configContent") String configContent,@Param("configType") int configType);
 }

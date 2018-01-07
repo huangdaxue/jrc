@@ -30,6 +30,11 @@ public class Version implements Serializable {
     @NotNull(message = "description cant not be null")
     private String description;
 
+    /**
+     * 0 properties
+     * 1 yaml
+     */
+    private int configType;
     private String content;
 
     /**
@@ -71,6 +76,14 @@ public class Version implements Serializable {
 
     public String getUnit() {
         return unit;
+    }
+
+    public int getConfigType() {
+        return configType;
+    }
+
+    public void setConfigType(int configType) {
+        this.configType = configType;
     }
 
     public void setUnit(String unit) {
@@ -148,6 +161,7 @@ public class Version implements Serializable {
                 ", version='" + version + '\'' +
                 ", profile='" + profile + '\'' +
                 ", description='" + description + '\'' +
+                ", configType=" + configType +
                 ", content='" + content + '\'' +
                 ", requestNumber=" + requestNumber +
                 ", createTime=" + createTime +

@@ -1,5 +1,6 @@
 package com.xiaojiezhu.jrc.web.server.service.impl;
 
+import com.xiaojiezhu.jrc.common.config.Config;
 import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.server.dao.mysql.UnitDao;
@@ -70,5 +71,15 @@ public class ConfigServiceImpl implements ConfigService {
         List<Version> versions = versionDao.listVersion(start,size,unitId,version,profile);
         long count = versionDao.countVersion(unitId,version,profile);
         return new LimitResult(count,versions);
+    }
+
+    @Override
+    public Config findConfigContentByVersionId(int versionId) {
+        return configHelper.getRealConfigByVersionId(versionId);
+    }
+
+    @Override
+    public void updateVersionConfigContent(int versionId, String configContent) {
+        configHelper.updateVersionConfigContent(versionId,configContent);
     }
 }

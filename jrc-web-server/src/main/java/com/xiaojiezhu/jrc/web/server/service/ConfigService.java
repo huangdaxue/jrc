@@ -1,5 +1,6 @@
 package com.xiaojiezhu.jrc.web.server.service;
 
+import com.xiaojiezhu.jrc.common.config.Config;
 import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
@@ -46,4 +47,19 @@ public interface ConfigService {
      * @return
      */
     LimitResult listVersion(int index, int size,int unitId, String version,String profile);
+
+    /**
+     * Find version config content by id
+     * @param versionId version table id
+     * @return
+     */
+    Config findConfigContentByVersionId(int versionId);
+
+
+    /**
+     * Set version config data
+     * @param versionId
+     * @param configContent
+     */
+    void updateVersionConfigContent(int versionId, String configContent);
 }

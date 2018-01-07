@@ -1,8 +1,10 @@
 package com.xiaojiezhu.jrc.web.server.controller;
 
 import com.xiaojiezhu.jrc.common.BeanUtil;
+import com.xiaojiezhu.jrc.common.config.Config;
 import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
+import com.xiaojiezhu.jrc.web.server.model.PostConfigData;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
 import com.xiaojiezhu.jrc.web.server.support.exception.ex.NoticeException;
@@ -82,5 +84,26 @@ public class ConfigController {
             throw new RuntimeException("out query size");
         }
         return configService.listVersion(index,size,unitId,version,profile);
+    }
+
+    /**
+     * Find version config content
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/findConfigContentByVersionId")
+    public Config findConfigContentByVersionId(@RequestParam("versionId")int versionId){
+        return configService.findConfigContentByVersionId(versionId);
+    }
+
+    /**
+     * Set a version config data
+     * @param configContent
+     * @param versionId
+     */
+    @ResponseBody
+    @RequestMapping("/updateVersionConfigContent")
+    public void updateVersionConfigContent(@RequestBody()PostConfigData configContent, @RequestParam("versionId")int versionId){
+        configService.updateVersionConfigContent(versionId,configContent.getContent());
     }
 }

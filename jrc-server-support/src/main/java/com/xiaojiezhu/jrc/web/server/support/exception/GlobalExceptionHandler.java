@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public Result<?> handler(Throwable throwable){
         if(ExceptionMapping.isPrintError(throwable)){
-            throwable.printStackTrace();
+            LOG.error(throwable.getMessage(),throwable);
         }else{
             LOG.info(throwable.getMessage());
         }
