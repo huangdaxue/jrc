@@ -27,14 +27,14 @@ public interface UnitDao {
      * @param unitName
      * @return
      */
-    List<Unit> listUnit(@Param("start") int start, @Param("size") int size, @Param("unitName") String unitName);
+    List<Unit> listUnit(@Param("start") int start, @Param("size") int size,@Param("group")String group, @Param("unitName") String unitName);
 
     /**
      * count by unitName,if empty count all
      * @param unitName
      * @return
      */
-    long countUnit(@Param("unitName")String unitName);
+    long countUnit(@Param("group")String group,@Param("unitName")String unitName);
 
 
 }

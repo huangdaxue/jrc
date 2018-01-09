@@ -44,10 +44,10 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
-    public LimitResult listUnit(int index, int size, String unitName) {
+    public LimitResult listUnit(int index, int size, String group,String unitName) {
         int start = (index - 1) * size;
-        List<Unit> units = unitDao.listUnit(start, size, unitName);
-        long count = unitDao.countUnit(unitName);
+        List<Unit> units = unitDao.listUnit(start, size, group,unitName);
+        long count = unitDao.countUnit(group,unitName);
         return new LimitResult(count,units);
     }
 

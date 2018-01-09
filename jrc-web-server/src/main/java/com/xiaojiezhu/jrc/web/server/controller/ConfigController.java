@@ -49,11 +49,11 @@ public class ConfigController {
 
     @ResponseBody
     @RequestMapping("/listUnit")
-    public LimitResult listUnit(@RequestParam("index")int index, @RequestParam("size")int size, @RequestParam("unitName")String unitName){
+    public LimitResult listUnit(@RequestParam("index")int index, @RequestParam("size")int size,@RequestParam("group")String group, @RequestParam("unit")String unitName){
         if(size > 30){
             throw new RuntimeException("out query size");
         }
-        return configService.listUnit(index,size,unitName);
+        return configService.listUnit(index,size,group,unitName);
     }
 
 
