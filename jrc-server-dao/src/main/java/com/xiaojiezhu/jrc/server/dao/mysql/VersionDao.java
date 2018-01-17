@@ -1,5 +1,6 @@
 package com.xiaojiezhu.jrc.server.dao.mysql;
 
+import com.xiaojiezhu.jrc.model.UnitVersion;
 import com.xiaojiezhu.jrc.model.Version;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -45,4 +46,9 @@ public interface VersionDao {
      */
     @Update("update version set content=#{configContent},config_type=${configType},update_time=now() where id=${id}")
     int updateVersionConfigContent(@Param("id") int versionId, @Param("configContent") String configContent,@Param("configType") int configType);
+
+    List<UnitVersion> listUnitVersion(@Param("group") String group, @Param("unit") String unit, @Param("version") String version, @Param("profile") String profile, @Param("start") int start, @Param("size") int size);
+
+
+    long countUnitVersion(@Param("group") String group, @Param("unit") String unit, @Param("version") String version, @Param("profile") String profile);
 }

@@ -62,4 +62,16 @@ public interface ConfigService {
      * @param configContent
      */
     void updateVersionConfigContent(int versionId, String configContent);
+
+    /**
+     * list unitVersion
+     * @param group
+     * @param unit
+     * @param version
+     * @param profile
+     * @param index
+     * @param size
+     * @return
+     */
+    LimitResult listUnitVersion(String group, String unit, String version, String profile, int index, int size);
 }

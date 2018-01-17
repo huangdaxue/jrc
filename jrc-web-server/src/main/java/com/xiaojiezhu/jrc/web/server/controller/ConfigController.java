@@ -3,6 +3,7 @@ package com.xiaojiezhu.jrc.web.server.controller;
 import com.xiaojiezhu.jrc.common.BeanUtil;
 import com.xiaojiezhu.jrc.common.config.Config;
 import com.xiaojiezhu.jrc.model.Unit;
+import com.xiaojiezhu.jrc.model.UnitVersion;
 import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.web.server.model.PostConfigData;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
@@ -105,5 +106,23 @@ public class ConfigController {
     @RequestMapping("/updateVersionConfigContent")
     public void updateVersionConfigContent(@RequestBody()PostConfigData configContent, @RequestParam("versionId")int versionId){
         configService.updateVersionConfigContent(versionId,configContent.getContent());
+    }
+
+    /**
+     * List unitVersion
+     * @param group
+     * @param unit
+     * @param version
+     * @param profile
+     * @param index
+     * @param size
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/listUnitVersion")
+    public LimitResult listUnitVersion(@RequestParam("group")String group, @RequestParam("unit")String unit,
+                                             @RequestParam("version")String version, @RequestParam("profile")String profile,
+                                             @RequestParam("index")int index, @RequestParam("size")int size){
+        return configService.listUnitVersion(group,unit,version,profile,index,size);
     }
 }
