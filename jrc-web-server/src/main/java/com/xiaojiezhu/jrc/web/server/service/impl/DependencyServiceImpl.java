@@ -1,11 +1,15 @@
 package com.xiaojiezhu.jrc.web.server.service.impl;
 
+import com.xiaojiezhu.jrc.model.Dependency;
 import com.xiaojiezhu.jrc.server.dao.mysql.DependencyDao;
 import com.xiaojiezhu.jrc.web.server.service.DependencyService;
+import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author xiaojie.zhu
@@ -29,5 +33,18 @@ public class DependencyServiceImpl implements DependencyService{
             dependencyDao.addDependency(versionId,dependencyVersionId);
             return 0;
         }
+    }
+
+    @Override
+    public List<Long> getDependencyVersionId(int versionId) {
+        return dependencyDao.getDependencyVersionId(versionId);
+    }
+
+    @Override
+    public LimitResult getDependencyList(int versionId, int index, int size) {
+        int start = (index -1) * size;
+        List<Dependency> dependencies = dependencyDao.getDependencyList(versionId,start,size);
+        long count = dependencyDao.countDependency(versionId);
+        return new LimitResult(count,dependencies);
     }
 }
