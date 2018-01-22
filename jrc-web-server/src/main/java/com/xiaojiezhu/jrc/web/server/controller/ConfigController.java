@@ -3,7 +3,6 @@ package com.xiaojiezhu.jrc.web.server.controller;
 import com.xiaojiezhu.jrc.common.BeanUtil;
 import com.xiaojiezhu.jrc.common.config.Config;
 import com.xiaojiezhu.jrc.model.Unit;
-import com.xiaojiezhu.jrc.model.UnitVersion;
 import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.web.server.model.PostConfigData;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
@@ -17,8 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 /**
  * @author xiaojie.zhu

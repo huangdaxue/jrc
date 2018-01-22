@@ -1,6 +1,10 @@
 package com.xiaojiezhu.jrc.web.server.service.impl;
 
+import com.xiaojiezhu.jrc.common.exception.UnSupportConfigException;
+import com.xiaojiezhu.jrc.common.resolve.ConfigResolve;
+import com.xiaojiezhu.jrc.common.resolve.DefaultConfigResolve;
 import com.xiaojiezhu.jrc.model.Dependency;
+import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.server.dao.mysql.DependencyDao;
 import com.xiaojiezhu.jrc.web.server.service.DependencyService;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
@@ -10,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xiaojie.zhu
@@ -46,5 +51,42 @@ public class DependencyServiceImpl implements DependencyService{
         List<Dependency> dependencies = dependencyDao.getDependencyList(versionId,start,size);
         long count = dependencyDao.countDependency(versionId);
         return new LimitResult(count,dependencies);
+    }
+
+    @Override
+    public Map<String, String> getGlobalVersionConfig(int versionId) {
+        DefaultConfigResolve resolve = new DefaultConfigResolve();
+        resolveConfig(resolve,versionId);
+        Map<String, String> configContent = resolve.resolve();
+        return configContent;
+    }
+
+
+    /**
+     * repeat read config dependency config data
+     * @param configResolve
+     * @param versionId
+     */
+    private void resolveConfig(DefaultConfigResolve configResolve,int versionId){
+        String content = dependencyDao.getVersionConfigContent(versionId);
+        if(content != null){
+            try {
+                configResolve.addConfig(content);
+            } catch (UnSupportConfigException e) {
+                LOG.error("error config data format,it is:" + content);
+            }
+        }
+
+        List<Integer> dependencyIds = dependencyDao.getDependencyId(versionId);
+        if(dependencyIds != null && dependencyIds.size() > 0){
+            for(int i = 0 ; i < dependencyIds.size() ; i ++){
+                Integer dependencyId = dependencyIds.get(i);
+                if(dependencyId != null){
+                    resolveConfig(configResolve,dependencyId);
+                }
+
+            }
+        }
+
     }
 }

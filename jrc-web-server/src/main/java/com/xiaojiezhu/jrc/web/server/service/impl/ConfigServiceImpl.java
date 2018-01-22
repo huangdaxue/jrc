@@ -8,7 +8,6 @@ import com.xiaojiezhu.jrc.server.dao.mysql.UnitDao;
 import com.xiaojiezhu.jrc.server.dao.mysql.VersionDao;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
 import com.xiaojiezhu.jrc.web.server.service.helper.ConfigHelper;
-import com.xiaojiezhu.jrc.web.server.support.exception.ex.UnitExistException;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

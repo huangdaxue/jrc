@@ -1,6 +1,7 @@
 package com.xiaojiezhu.jrc.server.dao.mysql;
 
 import com.xiaojiezhu.jrc.model.Dependency;
+import com.xiaojiezhu.jrc.model.Version;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -46,4 +47,28 @@ public interface DependencyDao {
      */
     @Select("select count(1) from dependency a where a.version_id=${versionId}")
     long countDependency(@Param("versionId") int versionId);
+
+    /**
+     * get the version config data
+     * @param versionId
+     * @return
+     */
+    @Select("select content from version where id=${versionId}")
+    String getVersionConfigContent(@Param("versionId") int versionId);
+
+    /**
+     * Get the version id dependency config
+     * @param versionId
+     * @return
+     */
+    @Select("select b.id,b.content,b.config_type from dependency a left join version b on a.dependency_id=b.id where a.version_id=${versionId}")
+    List<Version> getVersionDependency(@Param("versionId") int versionId);
+
+    /**
+     * Get the dependency ids
+     * @param versionId
+     * @return
+     */
+    @Select("select b.id from dependency a left join version b on a.dependency_id=b.id where a.version_id=${versionId};")
+    List<Integer> getDependencyId(@Param("versionId") int versionId);
 }

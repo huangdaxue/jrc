@@ -5,8 +5,6 @@ import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 
-import java.util.List;
-
 /**
  * @author xiaojie.zhu
  */

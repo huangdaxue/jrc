@@ -13,8 +13,6 @@ import com.xiaojiezhu.jrc.web.server.support.exception.ex.NoticeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * @author xiaojie.zhu
  */

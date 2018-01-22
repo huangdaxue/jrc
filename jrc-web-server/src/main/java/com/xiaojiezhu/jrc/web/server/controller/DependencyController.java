@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * control dependency
@@ -57,5 +58,16 @@ public class DependencyController {
     @RequestMapping("/getDependencyList")
     public LimitResult getDependencyList(@RequestParam("versionId")int versionId, @RequestParam("index")int index, @RequestParam("size")int size){
         return dependencyService.getDependencyList(versionId,index,size);
+    }
+
+    /**
+     * Get the global version config, with dependency version config
+     * @param versionId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getGlobalVersionConfig")
+    public Map<String, String> getGlobalVersionConfig(@RequestParam("versionId")int versionId){
+        return dependencyService.getGlobalVersionConfig(versionId);
     }
 }

@@ -3,6 +3,7 @@ package com.xiaojiezhu.jrc.web.server.service;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Dependency service interface
@@ -33,4 +34,11 @@ public interface DependencyService {
      * @return
      */
     LimitResult getDependencyList(int versionId, int index, int size);
+
+    /**
+     * Get the global version config, with dependency version config
+     * @param versionId
+     * @return
+     */
+    Map<String, String> getGlobalVersionConfig(int versionId);
 }

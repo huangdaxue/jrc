@@ -4,8 +4,6 @@ import com.xiaojiezhu.jrc.common.config.Config;
 import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
 
-import java.util.List;
-
 /**
  * @author xiaojie.zhu
  */

@@ -55,9 +55,12 @@ public class ConfigUtil {
             reader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = reader.readLine()) != null){
+                if("".equals(line)){
+                    break;
+                }
                 if(!line.startsWith("#")){
                     String[] split = line.split(E);
-                    if(split.length != 2){
+                    if(split.length < 2){
                         return false;
                     }
                 }
