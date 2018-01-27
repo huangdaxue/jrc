@@ -1,6 +1,7 @@
 package com.xiaojiezhu.jrc.web.server.controller;
 
 import com.xiaojiezhu.jrc.model.Dependency;
+import com.xiaojiezhu.jrc.server.common.JrcConfigService;
 import com.xiaojiezhu.jrc.web.server.service.DependencyService;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
@@ -22,6 +23,8 @@ public class DependencyController {
 
     @Autowired
     private DependencyService dependencyService;
+    @Autowired
+    private JrcConfigService jrcConfigService;
 
     /**
      * Add a dependency to other config version
@@ -68,6 +71,6 @@ public class DependencyController {
     @ResponseBody
     @RequestMapping("/getGlobalVersionConfig")
     public Map<String, String> getGlobalVersionConfig(@RequestParam("versionId")int versionId){
-        return dependencyService.getGlobalVersionConfig(versionId);
+        return jrcConfigService.getGlobalVersionConfig(versionId);
     }
 }

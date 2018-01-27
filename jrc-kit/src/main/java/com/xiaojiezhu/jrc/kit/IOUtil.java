@@ -1,4 +1,4 @@
-package com.xiaojiezhu.jrc.common.util;
+package com.xiaojiezhu.jrc.kit;
 
 import java.io.BufferedReader;
 import java.io.IOException;

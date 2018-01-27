@@ -28,13 +28,10 @@
             <groupId>com.xiaojiezhu.jrc</groupId>
             <artifactId>jrc-server-support</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.xiaojiezhu.jrc</groupId>
-            <artifactId>jrc-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.xiaojiezhu.jrc</groupId>
-            <artifactId>jrc-server-dao</artifactId>
+            <artifactId>jrc-server-common</artifactId>
         </dependency>
         <!-- jrc...end -->
 
@@ -76,6 +73,15 @@
 
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>

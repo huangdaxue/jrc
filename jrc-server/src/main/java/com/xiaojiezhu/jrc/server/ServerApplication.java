@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
  * @author xiaojie.zhu
  */
 @Import({WebMvcConfig.class, DataSourceConfiguration.class, MybatisConfiguration.class,GlobalExceptionHandler.class})
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.xiaojiezhu.jrc"})
 public class ServerApplication {
 
     public static void main(String[] args) {

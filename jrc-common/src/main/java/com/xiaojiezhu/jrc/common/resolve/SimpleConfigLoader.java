@@ -1,7 +1,7 @@
 package com.xiaojiezhu.jrc.common.resolve;
 
 import com.xiaojiezhu.jrc.common.config.ConfigType;
-import com.xiaojiezhu.jrc.common.util.CloseUtil;
+import com.xiaojiezhu.jrc.kit.CloseUtil;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.io.InputStreamResource;
 

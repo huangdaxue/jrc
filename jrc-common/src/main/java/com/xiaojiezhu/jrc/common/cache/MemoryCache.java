@@ -120,6 +120,12 @@ public class MemoryCache implements Cache {
 
     }
 
+    @Override
+    public synchronized void flushDb() {
+        DATA.clear();
+        EXPIRE.clear();
+    }
+
 
     private MemoryCache(){
 

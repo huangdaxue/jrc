@@ -1,7 +1,7 @@
 package com.xiaojiezhu.jrc.common.config;
 
 import com.xiaojiezhu.jrc.common.exception.UnSupportConfigException;
-import com.xiaojiezhu.jrc.common.util.CloseUtil;
+import com.xiaojiezhu.jrc.kit.CloseUtil;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.BufferedReader;

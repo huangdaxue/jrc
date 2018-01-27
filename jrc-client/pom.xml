@@ -12,4 +12,25 @@
     <artifactId>jrc-client</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xiaojiezhu.jrc</groupId>
+            <artifactId>jrc-kit</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
 </project>

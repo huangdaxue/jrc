@@ -2,8 +2,8 @@ package com.xiaojiezhu.jrc.web.server.test;
 
 import com.xiaojiezhu.jrc.common.exception.UnSupportConfigException;
 import com.xiaojiezhu.jrc.common.resolve.*;
-import com.xiaojiezhu.jrc.common.util.CloseUtil;
-import com.xiaojiezhu.jrc.common.util.IOUtil;
+import com.xiaojiezhu.jrc.kit.CloseUtil;
+import com.xiaojiezhu.jrc.kit.IOUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.io.InputStreamResource;
@@ -19,7 +19,6 @@ public class ResolveTest {
 
     @Test
     public void test2() throws FileNotFoundException {
-
         YamlPropertiesFactoryBean bean = new YamlPropertiesFactoryBean();
         bean.setResources(new InputStreamResource(new FileInputStream("D:\\tmp\\config\\a")));
 

@@ -173,6 +173,11 @@ public class RedissonCache extends RedisCache{
         }
     }
 
+    @Override
+    public void flushDb() {
+        redissonKeys.flushdb();
+    }
+
 
     private final static void keyNotNull(String key){
         if(key==null || key.length() == 0){

@@ -38,5 +38,11 @@ public interface Cache {
     Date getDate(String key);
 
 
+    /**
+     * 清空数据库
+     */
+    void flushDb();
+
+
 
 }

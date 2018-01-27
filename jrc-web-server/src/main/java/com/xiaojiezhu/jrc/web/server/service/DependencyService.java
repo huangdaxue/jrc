@@ -35,10 +35,5 @@ public interface DependencyService {
      */
     LimitResult getDependencyList(int versionId, int index, int size);
 
-    /**
-     * Get the global version config, with dependency version config
-     * @param versionId
-     * @return
-     */
-    Map<String, String> getGlobalVersionConfig(int versionId);
+
 }

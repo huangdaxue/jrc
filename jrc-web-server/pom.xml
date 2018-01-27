@@ -28,11 +28,7 @@
         </dependency>
         <dependency>
             <groupId>com.xiaojiezhu.jrc</groupId>
-            <artifactId>jrc-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.xiaojiezhu.jrc</groupId>
-            <artifactId>jrc-server-dao</artifactId>
+            <artifactId>jrc-server-common</artifactId>
         </dependency>
         <!-- jrc...end -->
 

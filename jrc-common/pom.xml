@@ -37,6 +37,16 @@
             <scope>provided</scope>
         </dependency>
 
+
+
+        <dependency>
+            <groupId>com.xiaojiezhu.jrc</groupId>
+            <artifactId>jrc-kit</artifactId>
+            <version>${version}</version>
+        </dependency>
+
+
+
     </dependencies>
 
 
