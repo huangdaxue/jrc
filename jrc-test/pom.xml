@@ -9,35 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jrc-server</artifactId>
+    <artifactId>jrc-test</artifactId>
+
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- jrc...start -->
-        <dependency>
             <groupId>com.xiaojiezhu.jrc</groupId>
-            <artifactId>jrc-server-support</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.xiaojiezhu.jrc</groupId>
-            <artifactId>jrc-server-common</artifactId>
-        </dependency>
-        <!-- jrc...end -->
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <artifactId>jrc-client</artifactId>
         </dependency>
 
         <dependency>
@@ -45,6 +23,10 @@
             <artifactId>commons-codec</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
 
 
 
@@ -75,18 +57,6 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <!-- 日志包...结束 -->
-
-
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 
 </project>

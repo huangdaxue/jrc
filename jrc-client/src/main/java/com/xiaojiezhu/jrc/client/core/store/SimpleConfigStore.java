@@ -29,15 +29,18 @@ public class SimpleConfigStore implements ConfigStore {
     }
 
     public SimpleConfigStore(String group, String unit, String version, String profile) {
+        if(group == null || unit == null || version == null || profile == null){
+            throw new NullPointerException("the pointer is fail,group:" + group + ",unit:" + unit + ",version:" + version + ",profile:" + profile);
+        }
         this.group = group;
         this.unit = unit;
         this.version = version;
         this.profile = profile;
-        LOG.info("jrc config,group:" + group + " ,unit:" + unit + ", version:" + version + " ,profile:" + profile);
+        LOG.info("init jrc config , group:" + group + " ,unit:" + unit + ", version:" + version + " ,profile:" + profile);
         this.init();
     }
 
-    private void loadRemoteData() throws IOException {
+    private void loadRemoteData() throws Exception {
         LOG.debug("request jrc-server...");
         HttpRequest.CloseableResponse closeableResponse = HttpRequest.Builder.newBuilder().url(MetaConfig.getServerUrl() + "/config/getConfig").post().json().stream(getRequestParams().getBytes(UTF8)).build().requestConnection();
         InputStream inputStream = closeableResponse.getInputStream();
@@ -46,19 +49,7 @@ public class SimpleConfigStore implements ConfigStore {
         CloseUtil.close(closeableResponse);
     }
 
-    private String getRequestParams(){
-        TreeMap<String,Object> params = new TreeMap<>();
-        params.put("group",group);
-        params.put("unit",unit);
-        params.put("version",version);
-        params.put("profile",profile);
-        params.put("time",System.currentTimeMillis());
-        params.put("random", RandomUtil.random(8));
 
-        String sign = SignUtil.sign(params, MetaConfig.getJrcKey());
-        params.put("sign",sign);
-        return JSON.toJSONString(params);
-    }
 
     private void init(){
         new Thread(new Runnable() {
@@ -67,9 +58,9 @@ public class SimpleConfigStore implements ConfigStore {
                 while (true){
                     try {
                         loadRemoteData();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        LOG.error("request jrc-server fail ,reason:" + e.getMessage() + " jrc-server address:" + MetaConfig.getServerUrl());
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                        LOG.error("request jrc-server fail , reason:" + e.getMessage() + " jrc-server address:" + MetaConfig.getServerUrl());
                     }
 
                     try {

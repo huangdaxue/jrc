@@ -13,4 +13,15 @@ public interface JrcConfigService {
      * @return
      */
     Map<String, String> getGlobalVersionConfig(int versionId);
+
+
+    /**
+     * get the global version config with pointer
+     * @param group
+     * @param unit
+     * @param version
+     * @param profile
+     * @return
+     */
+    Map<String,?> getGlobalVersionConfig(String group, String unit, String version, String profile);
 }

@@ -20,6 +20,7 @@
         <module>jrc-model</module>
         <module>jrc-server-common</module>
         <module>jrc-kit</module>
+        <module>jrc-test</module>
     </modules>
 
 

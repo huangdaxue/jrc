@@ -248,7 +248,6 @@ public class HttpRequest {
                     out.close();
                 }
             }catch (Exception e){
-                e.printStackTrace();
                 throw new RuntimeException(e.getMessage(),e);
             }
 

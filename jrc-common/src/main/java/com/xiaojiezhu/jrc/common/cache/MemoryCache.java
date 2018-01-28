@@ -127,7 +127,7 @@ public class MemoryCache implements Cache {
     }
 
 
-    private MemoryCache(){
+    public MemoryCache(){
 
     }
 

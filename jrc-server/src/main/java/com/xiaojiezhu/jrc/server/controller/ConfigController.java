@@ -1,6 +1,9 @@
 package com.xiaojiezhu.jrc.server.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.xiaojiezhu.jrc.kit.JrcConstant;
 import com.xiaojiezhu.jrc.server.common.JrcConfigService;
+import com.xiaojiezhu.jrc.server.service.ConfigService;
 import com.xiaojiezhu.jrc.server.util.RequestKit;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
 import org.slf4j.Logger;
@@ -21,7 +24,7 @@ public class ConfigController {
     public final static Logger LOG = LoggerFactory.getLogger(ConfigController.class);
 
     @Autowired
-    private JrcConfigService jrcConfigService;
+    private ConfigService configService;
 
     /**
      * flush config cache
@@ -38,10 +41,11 @@ public class ConfigController {
      */
     @ResponseBody
     @RequestMapping("/getConfig")
-    public Map<String, String> getConfig(){
+    public Map<String, ?> getConfig(){
         String content = RequestKit.get();
-        LOG.info(content);
-        Map<String, String> globalVersionConfig = jrcConfigService.getGlobalVersionConfig(9);
+        Map<String,String> data = JSON.parseObject(content, Map.class);
+        Map<String, ?> globalVersionConfig = configService.getGlobalVersionConfig(data.get(JrcConstant.GROUP),data.get(JrcConstant.UNIT),
+                data.get(JrcConstant.VERSION),data.get(JrcConstant.PROFILE));
         return globalVersionConfig;
     }
 }

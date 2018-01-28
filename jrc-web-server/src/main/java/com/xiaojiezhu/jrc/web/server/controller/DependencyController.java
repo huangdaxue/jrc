@@ -1,8 +1,8 @@
 package com.xiaojiezhu.jrc.web.server.controller;
 
-import com.xiaojiezhu.jrc.model.Dependency;
 import com.xiaojiezhu.jrc.server.common.JrcConfigService;
 import com.xiaojiezhu.jrc.web.server.service.DependencyService;
+import com.xiaojiezhu.jrc.web.server.service.RemoteConfigService;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,8 @@ public class DependencyController {
     private DependencyService dependencyService;
     @Autowired
     private JrcConfigService jrcConfigService;
+    @Autowired
+    private RemoteConfigService remoteConfigService;
 
     /**
      * Add a dependency to other config version
@@ -65,12 +67,20 @@ public class DependencyController {
 
     /**
      * Get the global version config, with dependency version config
+     * suggest use by group,unit,version,profile
      * @param versionId
      * @return
      */
-    @ResponseBody
-    @RequestMapping("/getGlobalVersionConfig")
+    //@ResponseBody
+    //@RequestMapping("/getGlobalVersionConfig")
     public Map<String, String> getGlobalVersionConfig(@RequestParam("versionId")int versionId){
         return jrcConfigService.getGlobalVersionConfig(versionId);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getGlobalVersionConfig")
+    public Map<String,?> getGlobalVersionConfig(@RequestParam("group")String group,@RequestParam("unit")String unit,
+                                                     @RequestParam("version")String version,@RequestParam("profile")String profile){
+        return remoteConfigService.getGlobalVersionConfig(group,unit,version,profile);
     }
 }

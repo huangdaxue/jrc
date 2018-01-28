@@ -27,6 +27,7 @@ public abstract class RedisCache implements Cache{
         private List<RedisServer> redisServers = new ArrayList<RedisServer>();
         private String password;
         private int poolSize = 10;
+        private int dataBase;
 
         /**
          * 单机器
@@ -70,6 +71,14 @@ public abstract class RedisCache implements Cache{
 
         public int getPoolSize() {
             return poolSize;
+        }
+
+        public int getDataBase() {
+            return dataBase;
+        }
+
+        public void setDataBase(int dataBase) {
+            this.dataBase = dataBase;
         }
 
         class RedisServer{

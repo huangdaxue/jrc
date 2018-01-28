@@ -6,5 +6,6 @@ package com.xiaojiezhu.jrc.client.test;
 public class PropertiesTest {
 
     public static void main(String[] args) {
+
     }
 }

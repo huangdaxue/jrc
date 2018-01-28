@@ -1,14 +1,18 @@
 package com.xiaojiezhu.jrc.server.common.impl;
 
+import com.xiaojiezhu.jrc.common.cache.Cache;
 import com.xiaojiezhu.jrc.common.exception.UnSupportConfigException;
 import com.xiaojiezhu.jrc.common.resolve.DefaultConfigResolve;
+import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.server.common.JrcConfigService;
 import com.xiaojiezhu.jrc.server.dao.mysql.DependencyDao;
+import com.xiaojiezhu.jrc.server.dao.mysql.VersionDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -17,10 +21,13 @@ import java.util.Map;
  */
 @Service
 public class DefaultJrcConfigService implements JrcConfigService {
+
     public final static Logger LOG = LoggerFactory.getLogger(DefaultJrcConfigService.class);
 
     @Autowired
     private DependencyDao dependencyDao;
+    @Autowired
+    private VersionDao versionDao;
 
 
     @Override
@@ -30,6 +37,18 @@ public class DefaultJrcConfigService implements JrcConfigService {
         Map<String, String> configContent = resolve.resolve();
         return configContent;
     }
+
+    @Override
+    public Map<String, ?> getGlobalVersionConfig(String group, String unit, String version, String profile) {
+        Version dbVersion = versionDao.findVersion(group, unit, version, profile);
+        if(dbVersion == null){
+            throw new NullPointerException("can not find pointer , group:" + group + " , unit:"+ unit + " , version:" + version + " , unit:" + unit);
+        }
+        Map<String, String> globalVersionConfig = this.getGlobalVersionConfig(dbVersion.getId());
+        return globalVersionConfig;
+    }
+
+
 
     /**
      * repeat read config dependency config data

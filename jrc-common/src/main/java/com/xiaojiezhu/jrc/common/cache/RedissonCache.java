@@ -46,6 +46,7 @@ public class RedissonCache extends RedisCache{
                 singleServerConfig.setPassword(redisConf.getPassword());
             }
             singleServerConfig.setConnectionPoolSize(redisConf.getPoolSize());
+            singleServerConfig.setDatabase(redisConf.getDataBase());
 
             this.redissonClient = Redisson.create(config);
             this.redissonKeys = redissonClient.getKeys();
