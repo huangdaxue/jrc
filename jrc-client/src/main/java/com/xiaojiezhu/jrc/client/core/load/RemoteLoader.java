@@ -8,13 +8,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.Map;
 import java.util.TreeMap;
 
 /**
  * @author xiaojie.zhu
  */
-public class RemoteLoader extends ConfigLoader {
+class RemoteLoader extends ConfigLoader {
     public final static Logger LOG = LoggerFactory.getLogger(RemoteLoader.class);
     public final static Charset UTF8 = Charset.forName("UTF-8");
 
@@ -24,7 +23,7 @@ public class RemoteLoader extends ConfigLoader {
     }
 
     @Override
-    public Map<String, Object> load()throws Exception {
+    public ConfigResult load()throws Exception {
         LOG.debug("request jrc-server...");
         HttpRequest.CloseableResponse closeableResponse = HttpRequest.Builder.newBuilder().url(MetaConfig.getServerUrl() + "/config/getConfig").post().json().stream(getRequestParams().getBytes(UTF8)).build().requestConnection();
         InputStream inputStream = closeableResponse.getInputStream();

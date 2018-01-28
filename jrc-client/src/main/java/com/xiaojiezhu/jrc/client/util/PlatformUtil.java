@@ -1,5 +1,7 @@
 package com.xiaojiezhu.jrc.client.util;
 
+import java.io.File;
+
 /**
  * @author xiaojie.zhu
  */
@@ -28,5 +30,18 @@ public class PlatformUtil {
         }else{
             return "c:/opt/jrc/";
         }
+    }
+
+    /**
+     * get the config on disk path
+     * @param group
+     * @param unit
+     * @param version
+     * @param profile
+     * @return
+     */
+    public static String getCoordDiskPath(String group,String unit,String version,String profile){
+        String path = PlatformUtil.getDiskJrcPath() + group + File.separator + unit + File.separator + version + File.separator + profile + File.separator + "config.properties";
+        return path;
     }
 }

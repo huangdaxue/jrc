@@ -1,17 +1,18 @@
 package com.xiaojiezhu.jrc.client.core.load;
 
-import java.util.Map;
-
 /**
  * @author xiaojie.zhu
  */
-public abstract class ConfigLoader {
+abstract class ConfigLoader {
     protected String group;
     protected String unit;
     protected String version;
     protected String profile;
 
     public ConfigLoader(String group, String unit, String version, String profile) {
+        if(group == null || unit == null || version == null || profile == null){
+            throw new NullPointerException("the coord is fail, group:" + group + " , unit:" + unit + " , version:" + version + " , profile:" + profile);
+        }
         this.group = group;
         this.unit = unit;
         this.version = version;
@@ -22,7 +23,7 @@ public abstract class ConfigLoader {
      * load config by coord
      * @return
      */
-    public abstract Map<String,Object> load()throws Exception;
+    public abstract ConfigResult load()throws Exception;
 
 
 

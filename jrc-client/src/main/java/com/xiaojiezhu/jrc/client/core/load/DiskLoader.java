@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * @author xiaojie.zhu
  */
-public class DiskLoader extends ConfigLoader {
+class DiskLoader extends ConfigLoader {
     public final static Logger LOG = LoggerFactory.getLogger(DiskLoader.class);
 
     public DiskLoader(String group, String unit, String version, String profile) {
@@ -21,7 +21,7 @@ public class DiskLoader extends ConfigLoader {
     }
 
     @Override
-    public Map<String, Object> load() throws Exception {
+    public ConfigResult load() throws Exception {
         String path = PlatformUtil.getDiskJrcPath() + group + File.separator + unit + File.separator + version + File.separator + profile + File.separator + "config.properties";
         File file = new File(path);
         if(!file.exists()){
@@ -37,7 +37,7 @@ public class DiskLoader extends ConfigLoader {
             for(Object key : keys){
                 data.put(String.valueOf(key) , properties.get(key));
             }
-            return data;
+            return new ConfigResult(2,data);
         }
     }
 }
