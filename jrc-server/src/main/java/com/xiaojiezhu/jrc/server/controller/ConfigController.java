@@ -2,6 +2,7 @@ package com.xiaojiezhu.jrc.server.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.xiaojiezhu.jrc.kit.JrcConstant;
+import com.xiaojiezhu.jrc.kit.StateConfig;
 import com.xiaojiezhu.jrc.server.common.JrcConfigService;
 import com.xiaojiezhu.jrc.server.service.ConfigService;
 import com.xiaojiezhu.jrc.server.util.RequestKit;
@@ -41,10 +42,10 @@ public class ConfigController {
      */
     @ResponseBody
     @RequestMapping("/getConfig")
-    public Map<String, ?> getConfig(){
+    public StateConfig getConfig(){
         String content = RequestKit.get();
         Map<String,String> data = JSON.parseObject(content, Map.class);
-        Map<String, ?> globalVersionConfig = configService.getGlobalVersionConfig(data.get(JrcConstant.GROUP),data.get(JrcConstant.UNIT),
+        StateConfig globalVersionConfig = configService.getGlobalVersionConfig(data.get(JrcConstant.GROUP),data.get(JrcConstant.UNIT),
                 data.get(JrcConstant.VERSION),data.get(JrcConstant.PROFILE));
         return globalVersionConfig;
     }

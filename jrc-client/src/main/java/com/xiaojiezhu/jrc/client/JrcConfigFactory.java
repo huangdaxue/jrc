@@ -8,6 +8,10 @@ import com.xiaojiezhu.jrc.client.core.DefaultJrcConfig;
 public class JrcConfigFactory {
 
     public static JrcConfig getJrcConfig(){
-        return new DefaultJrcConfig();
+        return Instance.DEFAULT_JRC_CONFIG;
+    }
+
+    private static class Instance{
+        private static final DefaultJrcConfig DEFAULT_JRC_CONFIG = new DefaultJrcConfig();
     }
 }

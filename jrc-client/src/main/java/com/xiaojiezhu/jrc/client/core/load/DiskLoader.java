@@ -37,7 +37,12 @@ class DiskLoader extends ConfigLoader {
             for(Object key : keys){
                 data.put(String.valueOf(key) , properties.get(key));
             }
-            return new ConfigResult(2,data);
+            ConfigResult configResult = new ConfigResult(2, data);
+            configResult.setGroup(group);
+            configResult.setUnit(unit);
+            configResult.setVersion(version);
+            configResult.setProfile(profile);
+            return configResult;
         }
     }
 }

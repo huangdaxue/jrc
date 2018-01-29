@@ -2,6 +2,9 @@ package com.xiaojiezhu.jrc.client.core.store;
 
 import com.alibaba.fastjson.JSON;
 import com.xiaojiezhu.jrc.client.MetaConfig;
+import com.xiaojiezhu.jrc.client.core.load.ConfigLoader;
+import com.xiaojiezhu.jrc.client.core.load.ConfigResult;
+import com.xiaojiezhu.jrc.client.core.load.DefaultConfigLoader;
 import com.xiaojiezhu.jrc.kit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +26,11 @@ public class SimpleConfigStore implements ConfigStore {
     private String version;
     private String profile;
 
+    private Map<String,?> configData;
+
     @Override
     public Map<String, String> getConfig() {
-        return null;
+        return (Map<String, String>) configData;
     }
 
     public SimpleConfigStore(String group, String unit, String version, String profile) {
@@ -42,16 +47,21 @@ public class SimpleConfigStore implements ConfigStore {
 
     private void loadRemoteData() throws Exception {
         LOG.debug("request jrc-server...");
-        HttpRequest.CloseableResponse closeableResponse = HttpRequest.Builder.newBuilder().url(MetaConfig.getServerUrl() + "/config/getConfig").post().json().stream(getRequestParams().getBytes(UTF8)).build().requestConnection();
-        InputStream inputStream = closeableResponse.getInputStream();
-        String content = IOUtil.toString(inputStream);
-        LOG.debug("jrc-server response:" + content);
-        CloseUtil.close(closeableResponse);
+        ConfigLoader configLoader = new DefaultConfigLoader(group,unit,version,profile);
+        ConfigResult configResult = configLoader.load();
+        configData = configResult.getData();
+        LOG.debug("jrc-server response:" + configResult);
     }
 
 
 
     private void init(){
+        try {
+            loadRemoteData();
+        } catch (Exception e) {
+            LOG.error("request jrc-server fail , reason:" + e.getMessage() + " jrc-server address:" + MetaConfig.getServerUrl());
+        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {

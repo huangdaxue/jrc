@@ -3,7 +3,7 @@ package com.xiaojiezhu.jrc.client.core.load;
 /**
  * @author xiaojie.zhu
  */
-abstract class ConfigLoader {
+public abstract class ConfigLoader {
     protected String group;
     protected String unit;
     protected String version;

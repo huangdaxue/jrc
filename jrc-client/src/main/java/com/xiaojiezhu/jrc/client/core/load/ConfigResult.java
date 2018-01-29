@@ -23,9 +23,9 @@ public class ConfigResult {
     /**
      * the config
      */
-    private Map<String,Object> data;
+    private Map<String,?> data;
 
-    public ConfigResult(int code, Map<String, Object> data) {
+    public ConfigResult(int code, Map<String, ?> data) {
         this.code = code;
         this.data = data;
     }
@@ -74,11 +74,11 @@ public class ConfigResult {
         this.code = code;
     }
 
-    public Map<String, Object> getData() {
+    public Map<String, ?> getData() {
         return data;
     }
 
-    public void setData(Map<String, Object> data) {
+    public void setData(Map<String, ?> data) {
         this.data = data;
     }
 

@@ -1,7 +1,7 @@
 package com.xiaojiezhu.jrc.web.server.support;
 
 import com.alibaba.fastjson.JSON;
-import com.xiaojiezhu.jrc.common.Result;
+import com.xiaojiezhu.jrc.kit.Result;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.AsyncHandlerMethodReturnValueHandler;

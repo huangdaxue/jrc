@@ -1,5 +1,7 @@
 package com.xiaojiezhu.jrc.client;
 
+import java.util.Map;
+
 /**
  * @author xiaojie.zhu
  */
@@ -11,6 +13,12 @@ public interface JrcConfig {
      * @return
      */
     String getConfig();
+
+    /**
+     * get the config map
+     * @return
+     */
+    Map<String,?> getConfigMap();
 
     Object getObject(String key);
     Object getObject(String key,Object defaultValue);

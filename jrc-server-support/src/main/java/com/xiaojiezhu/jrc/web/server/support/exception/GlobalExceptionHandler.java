@@ -1,6 +1,6 @@
 package com.xiaojiezhu.jrc.web.server.support.exception;
 
-import com.xiaojiezhu.jrc.common.Result;
+import com.xiaojiezhu.jrc.kit.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

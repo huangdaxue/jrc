@@ -1,4 +1,4 @@
-package com.xiaojiezhu.jrc.common;
+package com.xiaojiezhu.jrc.kit;
 
 /**
  * response data,the real data in 'data' field

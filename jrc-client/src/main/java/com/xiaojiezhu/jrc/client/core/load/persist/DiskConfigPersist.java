@@ -59,10 +59,12 @@ public class DiskConfigPersist implements ConfigPersist {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(file,false));
-            Iterator<Map.Entry<String, Object>> iterator = configResult.getData().entrySet().iterator();
+            //Iterator<Map.Entry<String, ?>> iterator = configResult.getData().entrySet().iterator();
+            Iterator<? extends Map.Entry<String, ?>> iterator = configResult.getData().entrySet().iterator();
             while (iterator.hasNext()){
-                Map.Entry<String, Object> entry = iterator.next();
+                Map.Entry<String, ?> entry = iterator.next();
                 writer.write(entry.getKey() + "=" + entry.getValue());
+                writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

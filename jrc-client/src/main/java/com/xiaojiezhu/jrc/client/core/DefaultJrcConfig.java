@@ -1,10 +1,16 @@
 package com.xiaojiezhu.jrc.client.core;
 
+import com.alibaba.fastjson.JSON;
 import com.xiaojiezhu.jrc.client.JrcConfig;
 import com.xiaojiezhu.jrc.client.core.store.ConfigStore;
 import com.xiaojiezhu.jrc.client.core.store.SimpleConfigStore;
 import com.xiaojiezhu.jrc.client.coord.CoordLoader;
 import com.xiaojiezhu.jrc.client.coord.DefaultCoordLoader;
+import com.xiaojiezhu.jrc.client.exception.CanNotCastDoubleException;
+import com.xiaojiezhu.jrc.client.exception.CanNotCastIntegerException;
+import com.xiaojiezhu.jrc.client.exception.CanNotCastLongException;
+
+import java.util.Map;
 
 /**
  * @author xiaojie.zhu
@@ -46,56 +52,99 @@ public class DefaultJrcConfig implements JrcConfig {
 
     @Override
     public String getConfig() {
-        return null;
+        return JSON.toJSONString(getConfigMap());
+    }
+
+    @Override
+    public Map<String, ?> getConfigMap() {
+        return configStore.getConfig();
     }
 
     @Override
     public Object getObject(String key) {
-        return null;
+        return getConfigMap().get(key);
     }
 
     @Override
     public Object getObject(String key, Object defaultValue) {
-        return null;
+        Object value = this.getObject(key);
+        return value == null ? defaultValue : value;
     }
 
     @Override
     public Integer getInt(String key) {
-        return null;
+        Object value = this.getConfigMap().get(key);
+        if(value == null){
+            return null;
+        }else{
+            try {
+                return Integer.parseInt(String.valueOf(value));
+            } catch (NumberFormatException e) {
+                throw new CanNotCastIntegerException(String.valueOf(value));
+            }
+        }
     }
 
     @Override
     public Integer getInt(String key, Integer defaultValue) {
-        return null;
+        Integer value = this.getInt(key);
+        return value == null ? defaultValue : value;
     }
 
     @Override
     public Long getLong(String key) {
-        return null;
+        Object value = this.getConfigMap().get(key);
+        if(value == null){
+            return null;
+        }else{
+            try {
+                return Long.parseLong(String.valueOf(value));
+            } catch (NumberFormatException e) {
+                throw new CanNotCastLongException(String.valueOf(value));
+            }
+        }
     }
 
     @Override
     public Long getLong(String key, Long defaultValue) {
-        return null;
+        Long value = this.getLong(key);
+        return value == null ? defaultValue : value;
     }
 
     @Override
     public String getString(String key) {
-        return null;
+        Object value = this.getConfigMap().get(key);
+        if(value == null){
+            return null;
+        }else{
+            return value.toString();
+        }
     }
 
     @Override
     public String getString(String key, String defaultValue) {
-        return null;
+        String value = this.getString(key);
+        return value == null ? defaultValue : value;
     }
 
     @Override
     public Double getDouble(String key) {
-        return null;
+        Object value = this.getConfigMap().get(key);
+        if(value == null){
+            return null;
+        }else{
+            try {
+                return Double.parseDouble(String.valueOf(value));
+            } catch (NumberFormatException e) {
+                throw new CanNotCastDoubleException(String.valueOf(value));
+            }
+        }
     }
 
     @Override
     public Double getDouble(String key, Double defaultValue) {
-        return null;
+        Double value = this.getDouble(key);
+        return value == null ? defaultValue : value;
     }
+
 }

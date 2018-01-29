@@ -1,5 +1,7 @@
 package com.xiaojiezhu.jrc.server.service;
 
+import com.xiaojiezhu.jrc.kit.StateConfig;
+
 import java.util.Map;
 
 /**
@@ -16,5 +18,5 @@ public interface ConfigService {
      * @param profile
      * @return
      */
-    Map<String,?> getGlobalVersionConfig(String group, String unit, String version, String profile);
+    StateConfig getGlobalVersionConfig(String group, String unit, String version, String profile);
 }
