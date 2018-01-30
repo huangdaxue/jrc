@@ -1,11 +1,13 @@
 package com.xiaojiezhu.jrc.web.server.controller;
 
+import com.xiaojiezhu.jrc.client.coord.NativeConfig;
 import com.xiaojiezhu.jrc.server.common.JrcConfigService;
 import com.xiaojiezhu.jrc.web.server.service.DependencyService;
 import com.xiaojiezhu.jrc.web.server.service.RemoteConfigService;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -79,8 +81,7 @@ public class DependencyController {
 
     @ResponseBody
     @RequestMapping("/getGlobalVersionConfig")
-    public Map<String,?> getGlobalVersionConfig(@RequestParam("group")String group,@RequestParam("unit")String unit,
-                                                     @RequestParam("version")String version,@RequestParam("profile")String profile){
-        return remoteConfigService.getGlobalVersionConfig(group,unit,version,profile);
+    public Map<String,?> getGlobalVersionConfig(@RequestBody()NativeConfig nativeConfig) throws Exception {
+        return remoteConfigService.getGlobalVersionConfig(nativeConfig.getGroup(),nativeConfig.getUnit(),nativeConfig.getVersion(),nativeConfig.getProfile());
     }
 }

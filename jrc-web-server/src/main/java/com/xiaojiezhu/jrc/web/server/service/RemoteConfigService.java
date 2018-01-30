@@ -17,5 +17,5 @@ public interface RemoteConfigService {
      * @param profile
      * @return
      */
-    Map<String,?> getGlobalVersionConfig(String group, String unit, String version, String profile);
+    Map<String,?> getGlobalVersionConfig(String group, String unit, String version, String profile) throws Exception;
 }
