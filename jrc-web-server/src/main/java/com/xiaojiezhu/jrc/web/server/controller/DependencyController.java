@@ -2,6 +2,7 @@ package com.xiaojiezhu.jrc.web.server.controller;
 
 import com.xiaojiezhu.jrc.client.coord.NativeConfig;
 import com.xiaojiezhu.jrc.server.common.JrcConfigService;
+import com.xiaojiezhu.jrc.web.server.annotation.FlushCache;
 import com.xiaojiezhu.jrc.web.server.service.DependencyService;
 import com.xiaojiezhu.jrc.web.server.service.RemoteConfigService;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
@@ -36,6 +37,7 @@ public class DependencyController {
      * @param dependencyId The dependency version id
      * @return 0 success, 1 exist,2 versionId equals dependencyVersionId
      */
+    @FlushCache
     @ResponseBody
     @RequestMapping("/addDependency")
     public int addDependency(@RequestParam("versionId")int versionId,@RequestParam("dependencyId")int dependencyId){

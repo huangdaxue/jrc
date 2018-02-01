@@ -1,6 +1,7 @@
 package com.xiaojiezhu.jrc.server.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.xiaojiezhu.jrc.common.cache.Cache;
 import com.xiaojiezhu.jrc.kit.JrcConstant;
 import com.xiaojiezhu.jrc.kit.StateConfig;
 import com.xiaojiezhu.jrc.server.common.JrcConfigService;
@@ -26,6 +27,8 @@ public class ConfigController {
 
     @Autowired
     private ConfigService configService;
+    @Autowired
+    private Cache cache;
 
     /**
      * flush config cache
@@ -33,7 +36,7 @@ public class ConfigController {
     @ResponseBody
     @RequestMapping("/flushCache")
     public void flushCache(){
-
+        cache.flushDb();
     }
 
     /**

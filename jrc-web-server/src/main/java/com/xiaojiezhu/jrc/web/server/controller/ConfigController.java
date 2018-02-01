@@ -4,6 +4,7 @@ import com.xiaojiezhu.jrc.common.BeanUtil;
 import com.xiaojiezhu.jrc.common.config.Config;
 import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
+import com.xiaojiezhu.jrc.web.server.annotation.FlushCache;
 import com.xiaojiezhu.jrc.web.server.model.PostConfigData;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
 import com.xiaojiezhu.jrc.web.server.support.ResponseBody;
@@ -33,6 +34,7 @@ public class ConfigController {
      * @param unit
      * @return 0 success, 1 exist
      */
+    @FlushCache
     @ResponseBody
     @RequestMapping("/addUnit")
     public int addUnit(@RequestBody()Unit unit){
@@ -60,6 +62,7 @@ public class ConfigController {
      * @param version
      * @return 0 success , 1 exist
      */
+    @FlushCache
     @ResponseBody
     @RequestMapping("/addVersion")
     public int addVersion(@RequestBody Version version){
