@@ -88,43 +88,43 @@
             <dependency>
                 <groupId>com.xiaojiezhu.jrc</groupId>
                 <artifactId>jrc-server-support</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xiaojiezhu.jrc</groupId>
                 <artifactId>jrc-common</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xiaojiezhu.jrc</groupId>
                 <artifactId>jrc-client</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xiaojiezhu.jrc</groupId>
                 <artifactId>jrc-server-dao</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xiaojiezhu.jrc</groupId>
                 <artifactId>jrc-model</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xiaojiezhu.jrc</groupId>
                 <artifactId>jrc-server-common</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xiaojiezhu.jrc</groupId>
                 <artifactId>jrc-kit</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>

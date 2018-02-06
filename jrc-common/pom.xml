@@ -42,7 +42,7 @@
         <dependency>
             <groupId>com.xiaojiezhu.jrc</groupId>
             <artifactId>jrc-kit</artifactId>
-            <version>${version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
 
