@@ -10,13 +10,10 @@ j remote config 一个远程配置的开源项目
 
 一个完整的远程配置如下,这样的配置称为坐标，它可以精确的定义一组配置
 
-```json
-{
-  group : "groupName",
-  unit : "unitName",
-  version : "1.0-re",
-  profile : "dev"
-}
+```properties
+group=group.saas
+unit=unit.saas
+version=1.0
 ```
 
 ## 组 group

@@ -2,10 +2,12 @@ package com.xiaojiezhu.jrc.client.spring;
 
 import com.xiaojiezhu.jrc.client.JrcConfig;
 import com.xiaojiezhu.jrc.client.JrcConfigFactory;
+import com.xiaojiezhu.jrc.kit.exception.ConfigNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,7 @@ import java.util.Map;
 /**
  * @author xiaojie.zhu
  */
+@Component
 public class JrcSpringConfiguration implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
     public final static Logger LOG = LoggerFactory.getLogger(JrcSpringConfiguration.class);
 
@@ -34,7 +37,9 @@ public class JrcSpringConfiguration implements ApplicationListener<ApplicationEn
         JrcConfig jrcConfig = JrcConfigFactory.getJrcConfig();
         ConfigurableEnvironment environment = event.getEnvironment();
         Map<String, ?> configMap = jrcConfig.getConfigMap();
-
+        if(configMap == null){
+            throw new ConfigNotFoundException("can not fond the remote config from jrc,please check you config");
+        }
         MapPropertySource mapPropertySource = new MapPropertySource(CONFIG_NAME, (Map<String, Object>) configMap);
         environment.getPropertySources().addFirst(mapPropertySource);
     }

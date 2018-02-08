@@ -1,2 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.xiaojiezhu.jrc.client.spring.EnableAutoJrcConfig
+org.springframework.context.ApplicationListener=\
+com.xiaojiezhu.jrc.client.spring.JrcSpringConfiguration
+

@@ -1,6 +1,5 @@
 package com.xiaojiezhu.jrc.web.server;
 
-import com.xiaojiezhu.jrc.client.spring.EnableAutoJrcConfig;
 import com.xiaojiezhu.jrc.server.dao.configuration.DataSourceConfiguration;
 import com.xiaojiezhu.jrc.server.dao.configuration.MybatisConfiguration;
 import com.xiaojiezhu.jrc.web.server.support.WebMvcConfig;
@@ -14,7 +13,7 @@ import org.springframework.context.annotation.Import;
  * @author xiaojie.zhu
  */
 @Import({WebMvcConfig.class, DataSourceConfiguration.class, MybatisConfiguration.class,GlobalExceptionHandler.class})
-@SpringBootApplication(scanBasePackages = {"com.xiaojiezhu.jrc"} , excludeName = {"com.xiaojiezhu.jrc.client.spring.EnableAutoJrcConfig"})
+@SpringBootApplication(scanBasePackages = {"com.xiaojiezhu.jrc"})
 public class WebServerApplication {
 
     public static void main(String[] args) {
