@@ -1,7 +1,6 @@
 package com.xiaojiezhu.jrc.kit;
 
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -23,6 +22,21 @@ public class JrcUtil {
             throw new NullPointerException("key is null");
         }
     }
+
+
+    /**
+     * get is enable jrc config,if false,it will be disable
+     * @return
+     */
+    public static boolean isEnableJrcConfig(){
+        String status = System.getenv(JrcConstant.DISABLE_NAME);
+        if(Boolean.FALSE.toString().equals(status)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 
 
 }

@@ -2,6 +2,8 @@ package com.xiaojiezhu.jrc.client.spring;
 
 import com.xiaojiezhu.jrc.client.JrcConfig;
 import com.xiaojiezhu.jrc.client.JrcConfigFactory;
+import com.xiaojiezhu.jrc.kit.JrcConstant;
+import com.xiaojiezhu.jrc.kit.JrcUtil;
 import com.xiaojiezhu.jrc.kit.exception.ConfigNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,26 +23,24 @@ import java.util.Map;
 public class JrcSpringConfiguration implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
     public final static Logger LOG = LoggerFactory.getLogger(JrcSpringConfiguration.class);
 
+    private ConfigInject<ConfigurableEnvironment> configInject = new SpringConfigInject();
+    private PropertiesCreator propertiesCreator = PropertiesCreatorFactory.getPropertiesCreator();
 
-    private final static String DISABLE_NAME = "jrc.enable";
-    /**
-     * the name of config
-     */
-    private final static String CONFIG_NAME = "jrc";
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
-        String status = System.getenv(DISABLE_NAME);
-        if(Boolean.FALSE.toString().equals(status)){
+        boolean enableJrcConfig = JrcUtil.isEnableJrcConfig();
+        if(!enableJrcConfig){
             LOG.warn("the jrc config is disable");
             return;
         }
-        JrcConfig jrcConfig = JrcConfigFactory.getJrcConfig();
-        ConfigurableEnvironment environment = event.getEnvironment();
-        Map<String, ?> configMap = jrcConfig.getConfigMap();
-        if(configMap == null){
+
+        Map<String, ?> configMap = propertiesCreator.getConfigMap();
+        if(configMap == null || configMap.size() == 0){
             throw new ConfigNotFoundException("can not fond the remote config from jrc,please check you config");
         }
-        MapPropertySource mapPropertySource = new MapPropertySource(CONFIG_NAME, (Map<String, Object>) configMap);
-        environment.getPropertySources().addFirst(mapPropertySource);
+
+        configInject.inject(event.getEnvironment(),configMap);
+
+
     }
 }
