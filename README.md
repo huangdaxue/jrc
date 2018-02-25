@@ -22,6 +22,20 @@ j remote config 一个远程配置的开源项目
 
 DOCUMENT
 
+QQ交流群：723624368
+
 
 ## 项目截图
 ![](https://zxj19951029.github.io/img-lib/jrc/versionConfig.png)
+
+![](https://zxj19951029.github.io/img-lib/jrc/versionDependency.png)
+
+![](https://zxj19951029.github.io/img-lib/jrc/versionAllConfig.png)
+
+![](https://zxj19951029.github.io/img-lib/jrc/versionList.png)
+
+![](https://zxj19951029.github.io/img-lib/jrc/unitList.png)
+
+![](https://zxj19951029.github.io/img-lib/jrc/addUnit.png)
+
+![](https://zxj19951029.github.io/img-lib/jrc/index.png)
