@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @SpringBootApplication
-public class Application {
+public class TestApplication {
     @RequestMapping
     public String a(){
         return "hello";
     }
     public static void main(String[] args) {
-        SpringApplication.run(Application.class,args);
+        SpringApplication.run(TestApplication.class,args);
     }
 }

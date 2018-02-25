@@ -24,3 +24,4 @@ DOCUMENT
 
 
 ## 项目截图
+![](https://zxj19951029.github.io/img-lib/jrc/versionConfig.png)
