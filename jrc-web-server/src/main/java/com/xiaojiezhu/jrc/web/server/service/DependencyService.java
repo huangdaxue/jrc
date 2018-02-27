@@ -3,7 +3,6 @@ package com.xiaojiezhu.jrc.web.server.service;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Dependency service interface
@@ -36,4 +35,24 @@ public interface DependencyService {
     LimitResult getDependencyList(int versionId, int index, int size);
 
 
+    /**
+     * count how many config dependency this config
+     * @param id version id
+     * @return
+     */
+
+    int countAnOtherConfigDependency(int id);
+
+    /**
+     * delete this config dependency
+     * @param id
+     */
+    void deleteDependencyInfo(int id);
+
+    /**
+     * remove dependency
+     * @param versionId
+     * @param dependencyId
+     */
+    void removeDependency(int versionId, int dependencyId);
 }

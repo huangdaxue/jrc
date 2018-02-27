@@ -2,6 +2,7 @@ package com.xiaojiezhu.jrc.server.dao.mysql;
 
 import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -37,4 +38,10 @@ public interface UnitDao {
     long countUnit(@Param("group")String group,@Param("unitName")String unitName);
 
 
+    /**
+     * delete unit config
+     * @param id
+     */
+    @Delete("delete from unit where id=${id}")
+    int deleteUnitConfig(@Param("id") int id);
 }

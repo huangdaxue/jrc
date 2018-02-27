@@ -7,6 +7,7 @@ import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.server.dao.mysql.UnitDao;
 import com.xiaojiezhu.jrc.server.dao.mysql.VersionDao;
 import com.xiaojiezhu.jrc.web.server.service.ConfigService;
+import com.xiaojiezhu.jrc.web.server.service.DependencyService;
 import com.xiaojiezhu.jrc.web.server.service.helper.ConfigHelper;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
 import org.slf4j.Logger;
@@ -28,6 +29,8 @@ public class ConfigServiceImpl implements ConfigService {
     private UnitDao unitDao;
     @Autowired
     private VersionDao versionDao;
+    @Autowired
+    private DependencyService dependencyService;
 
     @Override
     public int addUnit(Unit unit) {
@@ -89,5 +92,35 @@ public class ConfigServiceImpl implements ConfigService {
         List<UnitVersion> data = versionDao.listUnitVersion(group,unit,version,profile,start,size);
         long total = versionDao.countUnitVersion(group,unit,version,profile);
         return new LimitResult(total, data);
+    }
+
+    @Override
+    public int deleteUnitConfig(int id) {
+        //query it has version config
+        int countVersion = versionDao.countVersionById(id);
+        //if not have,will be delete
+        if(countVersion > 0){
+            LOG.warn("can't delete unit config " + id + " it has version config");
+            return 1;
+        }
+        LOG.info("delete unit config");
+        unitDao.deleteUnitConfig(id);
+        return 0;
+    }
+
+    @Override
+    public int deleteVersionConfig(int id) {
+        //if has an other config dependency it,can't delete
+        int count = dependencyService.countAnOtherConfigDependency(id);
+        if(count > 0){
+            LOG.warn("it has an other version config dependency it,you can't delete it");
+            return 1;
+        }else{
+            LOG.info("delete version config");
+            //delete this config dependency info
+            dependencyService.deleteDependencyInfo(id);
+            versionDao.deleteVersionConfig(id);
+            return 0;
+        }
     }
 }

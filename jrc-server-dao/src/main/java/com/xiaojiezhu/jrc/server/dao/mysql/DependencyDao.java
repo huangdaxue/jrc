@@ -2,6 +2,7 @@ package com.xiaojiezhu.jrc.server.dao.mysql;
 
 import com.xiaojiezhu.jrc.model.Dependency;
 import com.xiaojiezhu.jrc.model.Version;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -71,4 +72,22 @@ public interface DependencyDao {
      */
     @Select("select b.id from dependency a left join version b on a.dependency_id=b.id where a.version_id=${versionId};")
     List<Integer> getDependencyId(@Param("versionId") int versionId);
+
+    /**
+     * get how many config dependency this config
+     * @param id
+     * @return
+     */
+    @Select("select count(1) from dependency where dependency_id=${id}")
+    int countAnOtherConfigDependency(@Param("id") int id);
+
+    /**
+     * delete this config dependency info
+     * @param id
+     */
+    @Delete("delete from dependency WHERE version_id=${id}")
+    void deleteDependencyInfo(@Param("id") int id);
+
+    @Delete("delete from dependency WHERE version_id=${versionId} and dependency_id=${dependencyId}")
+    void removeDependency(@Param("versionId") int versionId,@Param("dependencyId") int dependencyId);
 }

@@ -77,6 +77,7 @@ public class DependencyController {
      */
     //@ResponseBody
     //@RequestMapping("/getGlobalVersionConfig")
+    @Deprecated
     public Map<String, String> getGlobalVersionConfig(@RequestParam("versionId")int versionId){
         return jrcConfigService.getGlobalVersionConfig(versionId);
     }
@@ -85,5 +86,20 @@ public class DependencyController {
     @RequestMapping("/getGlobalVersionConfig")
     public Map<String,?> getGlobalVersionConfig(@RequestBody()NativeConfig nativeConfig) throws Exception {
         return remoteConfigService.getGlobalVersionConfig(nativeConfig.getGroup(),nativeConfig.getUnit(),nativeConfig.getVersion(),nativeConfig.getProfile());
+    }
+
+
+    /**
+     * remove the version config dependency
+     * @param versionId
+     * @param dependencyId
+     */
+    @ResponseBody
+    @FlushCache
+    @RequestMapping("/removeDependency")
+    public void removeDependency(@RequestParam("versionId")int versionId,
+                                 @RequestParam("dependencyId")int dependencyId){
+
+        dependencyService.removeDependency(versionId,dependencyId);
     }
 }

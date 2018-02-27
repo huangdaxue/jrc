@@ -2,6 +2,7 @@ package com.xiaojiezhu.jrc.server.dao.mysql;
 
 import com.xiaojiezhu.jrc.model.UnitVersion;
 import com.xiaojiezhu.jrc.model.Version;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -51,4 +52,14 @@ public interface VersionDao {
 
 
     long countUnitVersion(@Param("group") String group, @Param("unit") String unit, @Param("version") String version, @Param("profile") String profile);
+
+    @Select("select count(1) from version WHERE unit_id =${id}")
+    int countVersionById(@Param("id") int id);
+
+    /**
+     * delete version config
+     * @param id version table id
+     */
+    @Delete("delete from version where id=${id}")
+    void deleteVersionConfig(@Param("id") int id);
 }

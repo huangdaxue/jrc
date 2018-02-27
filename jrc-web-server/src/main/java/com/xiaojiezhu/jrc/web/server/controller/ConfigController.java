@@ -1,7 +1,10 @@
 package com.xiaojiezhu.jrc.web.server.controller;
 
+import com.xiaojiezhu.jrc.client.JrcConfigCache;
+import com.xiaojiezhu.jrc.client.util.FlushUtil;
 import com.xiaojiezhu.jrc.common.BeanUtil;
 import com.xiaojiezhu.jrc.common.config.Config;
+import com.xiaojiezhu.jrc.kit.JrcUtil;
 import com.xiaojiezhu.jrc.model.Unit;
 import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.web.server.annotation.FlushCache;
@@ -124,5 +127,37 @@ public class ConfigController {
                                              @RequestParam("version")String version, @RequestParam("profile")String profile,
                                              @RequestParam("index")int index, @RequestParam("size")int size){
         return configService.listUnitVersion(group,unit,version,profile,index,size);
+    }
+
+
+    /**
+     * delete the unit config , if it has not a version config,if it has a version config , it cant not delete it
+     * @param id the unit table id
+     * @return 0 success 1 has version config
+     */
+    @ResponseBody
+    @RequestMapping("/deleteUnitConfig")
+    public int deleteUnitConfig(@RequestParam("id")int id){
+        int result = configService.deleteUnitConfig(id);
+        if(result == 0){
+            FlushUtil.flushCache();
+        }
+        return result;
+    }
+
+
+    /**
+     * delete the version config
+     * @param id version table id
+     * @return 0 success , 1 has dependency can't delete
+     */
+    @ResponseBody
+    @RequestMapping("/deleteVersionConfig")
+    public int deleteVersionConfig(@RequestParam("id")int id){
+        int result = configService.deleteVersionConfig(id);
+        if(result == 0){
+            FlushUtil.flushCache();
+        }
+        return result;
     }
 }

@@ -72,4 +72,18 @@ public interface ConfigService {
      * @return
      */
     LimitResult listUnitVersion(String group, String unit, String version, String profile, int index, int size);
+
+    /**
+     * delete the unit config , if it has not a version config,if it has a version config , it cant not delete it
+     * @param id the unit table id
+     * @return 0 success 1 has version config
+     */
+    int deleteUnitConfig(int id);
+
+    /**
+     * delete the version config
+     * @param id version table id
+     * @return 0 success , 1 has dependency can't delete
+     */
+    int deleteVersionConfig(int id);
 }

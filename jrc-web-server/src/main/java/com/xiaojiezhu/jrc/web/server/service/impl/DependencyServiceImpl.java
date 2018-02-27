@@ -1,10 +1,6 @@
 package com.xiaojiezhu.jrc.web.server.service.impl;
 
-import com.xiaojiezhu.jrc.common.exception.UnSupportConfigException;
-import com.xiaojiezhu.jrc.common.resolve.ConfigResolve;
-import com.xiaojiezhu.jrc.common.resolve.DefaultConfigResolve;
 import com.xiaojiezhu.jrc.model.Dependency;
-import com.xiaojiezhu.jrc.model.Version;
 import com.xiaojiezhu.jrc.server.dao.mysql.DependencyDao;
 import com.xiaojiezhu.jrc.web.server.service.DependencyService;
 import com.xiaojiezhu.jrc.web.server.support.model.LimitResult;
@@ -14,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author xiaojie.zhu
@@ -53,8 +48,20 @@ public class DependencyServiceImpl implements DependencyService{
         return new LimitResult(count,dependencies);
     }
 
+    @Override
+    public int countAnOtherConfigDependency(int id) {
+        return dependencyDao.countAnOtherConfigDependency(id);
+    }
 
+    @Override
+    public void deleteDependencyInfo(int id) {
+        dependencyDao.deleteDependencyInfo(id);
+    }
 
+    @Override
+    public void removeDependency(int versionId, int dependencyId) {
+        dependencyDao.removeDependency(versionId,dependencyId);
+    }
 
 
 }
