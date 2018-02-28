@@ -1,6 +1,8 @@
 package com.xiaojiezhu.jrc.kit;
 
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -29,7 +31,10 @@ public class JrcUtil {
      * @return
      */
     public static boolean isEnableJrcConfig(){
-        String status = System.getenv(JrcConstant.DISABLE_NAME);
+        String status = System.getProperty(JrcConstant.DISABLE_NAME);
+        if(status == null){
+            status = System.getenv(JrcConstant.DISABLE_NAME);
+        }
         if(Boolean.FALSE.toString().equals(status)){
             return false;
         }else{
