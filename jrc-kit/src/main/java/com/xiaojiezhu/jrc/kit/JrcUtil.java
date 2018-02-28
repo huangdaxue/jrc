@@ -1,8 +1,6 @@
 package com.xiaojiezhu.jrc.kit;
 
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
