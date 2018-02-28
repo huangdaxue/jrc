@@ -106,6 +106,7 @@ public class ConfigController {
      * @param versionId
      */
     @ResponseBody
+    @FlushCache
     @RequestMapping("/updateVersionConfigContent")
     public void updateVersionConfigContent(@RequestBody()PostConfigData configContent, @RequestParam("versionId")int versionId){
         configService.updateVersionConfigContent(versionId,configContent.getContent());
